@@ -1,18 +1,26 @@
 package com.eduardo.b2wcrud.demo.service;
 
 
-import com.eduardo.b2wcrud.demo.documents.Planeta;
-import com.eduardo.b2wcrud.demo.repositories.PlanetaRepository;
+import com.eduardo.b2wcrud.demo.model.Planeta;
+import com.eduardo.b2wcrud.demo.repository.IPlanetaRepository;
+import com.eduardo.b2wcrud.demo.repository.PlanetaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.util.List;
+import java.util.Optional;
+
 
 @Service
 public class PlanetaService {
 
     @Autowired
-    private PlanetaRepository planetaRepository;
+    private IPlanetaRepository planetaRepository;
+
+    @Autowired
+    PlanetaRepository repository;
 
     public List<Planeta> listarTodos(){
         return planetaRepository.findAll();
@@ -22,8 +30,8 @@ public class PlanetaService {
         return planetaRepository.findById(id);
     }
 
-    public Optional<Planeta> listarPorNome(String nome){
-        return planetaRepository.findById(nome);
+    public List<Planeta> listarPorNome(String nome){
+        return repository.encontraPlanetaPorNome(nome);
     }
 
     public Planeta cadastrar(Planeta planeta){
