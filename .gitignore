@@ -13,7 +13,13 @@ target/
 .sts4-cache
 
 ### IntelliJ IDEA ###
+.gitignore
 .idea
+.README.md
+.target
+.mvn
+.mvnw.cmd
+.mvnw
 *.iws
 *.iml
 *.ipr
